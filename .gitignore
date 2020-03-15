@@ -1,0 +1,7 @@
+.idea
+data/
+Pipelines/songs/__pycache__/
+Pipelines/snotel/__pycache__/*
+__pycache__/
+derby.log
+metastore_db
