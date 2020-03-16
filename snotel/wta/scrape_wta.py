@@ -1,5 +1,6 @@
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
+import psycopg2
 import time
 from data_utils.mongoConnection import getMongoClient
 
@@ -56,3 +57,7 @@ def scrape_trip_reports():
 
 
 report_dict = scrape_trip_reports()
+
+conn = psycopg2.connect(
+    "host=kaladin-db.cju35raiyeyw.us-west-2.rds.amazonaws.com dbname=kaladindb user=postgres password=tchoob89")
+cur = conn.cursor()
