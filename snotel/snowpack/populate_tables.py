@@ -6,8 +6,7 @@ from snotel.snowpack.run_scraper import extract_snowpack_data
 def insert_snowpack_data(basins_dict):
     conn = psycopg2.connect("host=kaladin-db.cju35raiyeyw.us-west-2.rds.amazonaws.com dbname=kaladindb user=postgres password=tchoob89")
     cur = conn.cursor()
-    # import pdb
-    # pdb.set_trace()
+
     year = basins_dict.pop('year')
     day = basins_dict.pop('day')
     month = basins_dict.pop('month')
