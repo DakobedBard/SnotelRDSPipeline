@@ -40,7 +40,7 @@ def generate_url(year, month, day):
 rds_password = os.environ.get('KALADIN_RDS_PASSWORD')
 
 
-def insert_snowpack_data(basins_dict):
+def insert_snowpack_data(basins_dict, extract_date =datetime.datetime.today().date()):
     conn = psycopg2.connect(
         "host=kaladin-db.cju35raiyeyw.us-west-2.rds.amazonaws.com dbname=kaladindb user=postgres password=%s" % rds_password)
     cur = conn.cursor()
@@ -49,7 +49,9 @@ def insert_snowpack_data(basins_dict):
     day = basins_dict.pop('day')
     month = basins_dict.pop('month')
     print("day " + str(day))
-    date_ = date(year, month, day)
+    #date_ = date(year, month, day)
+
+    date_ = extract_date
     locationID = 1
     for region in basins_dict.keys():
         basins_dict[region].pop('Basin Index')
@@ -74,13 +76,11 @@ def insert_snowpack_data(basins_dict):
     conn.close()
 
 
-def extract_snowpack_data(url='https://wcc.sc.egov.usda.gov/reports/UpdateReport.html?report=Washington'):
+def extract_snowpack_data(url='https://wcc.sc.egov.usda.gov/reports/UpdateReport.html?report=Washington', extract_date=datetime.datetime.today().date()):
     r = requests.get(url)
     html = r.content
     soup = BeautifulSoup(html, 'html.parser')
     snowpackTable = soup.find('table', {'id': 'update_report_data'})
-    dateTag = snowpackTable.find_all("td", class_="smtext")
-    [a.split(',') for a in dateTag[1].text.split('\r')][1][-2:]  # Kinda janky
     metrics = ['Elev (ft) ', 'Snow Current (in)', 'Snow Median (in)', 'Snow Pct of Median', 'Water Current ',
                'Water Average (in)', 'Water Pct of Average']
 

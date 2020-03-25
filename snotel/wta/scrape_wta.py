@@ -16,7 +16,6 @@ class TripReport:
 
 import datetime
 
-
 def parse_trip_report(url):
     '''
     This function will attemnpt to parse the WTA trip report for it's title, date and text
