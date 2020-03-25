@@ -5,3 +5,4 @@ Pipelines/snotel/__pycache__/*
 __pycache__/
 derby.log
 metastore_db
+db_info.txt

@@ -2,9 +2,10 @@ import psycopg2
 from snotel.snowpack.sql_queries import snowpack_table_insert
 from datetime import date
 from snotel.snowpack.run_scraper import extract_snowpack_data
-
+import os
+rds_password = os.environ.get('KALADIN_RDS_PASSWORD')
 def insert_snowpack_data(basins_dict):
-    conn = psycopg2.connect("host=kaladin-db.cju35raiyeyw.us-west-2.rds.amazonaws.com dbname=kaladindb user=postgres password=tchoob89")
+    conn = psycopg2.connect("host=kaladin-db.cju35raiyeyw.us-west-2.rds.amazonaws.com dbname=kaladindb user=postgres password=%s" % rds_password)
     cur = conn.cursor()
 
     year = basins_dict.pop('year')

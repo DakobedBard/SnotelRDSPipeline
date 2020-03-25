@@ -1,14 +1,12 @@
 
-Connect to the RDS postgres database.. 
 
-psql --host=kaladin-db.cju35raiyeyw.us-west-2.rds.amazonaws.com --port=5432 --username=postgres --password  --dbname=kaladindb
+Snotel DataPipeline
+In this repository I am scraping data from USDA for Washington State snowpack and moving it into an AWS RDS postgres 
+database.  Similarly I am scraping the Washington State Trails Association for trip trip reports and pushing it to the same 
+RDS instance (though I now feel as though a NoSQL DB is more appropriate.   
+
+Technologies Used
+- Airflow
+- AWS RDS
 
 
-url = 'jdbc:postgresql://kaladin-db.cju35raiyeyw.us-west-2.rds.amazonaws.com/kaladindb'
-properties = {
-    "driver": "org.postgresql.Driver",
-    "user": "postgres",
-    "password": "tchoob89"
-}
-
-df.write.jdbc(url=db_url,table='testdb.employee',mode='overwrite',properties=db_properties)

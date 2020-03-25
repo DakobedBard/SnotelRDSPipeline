@@ -3,7 +3,8 @@ from bs4 import BeautifulSoup as soup
 import datetime
 from snotel.wta.sql_queries import trip_report_table_insert
 import psycopg2
-
+import os
+rds_password = os.environ.get('KALADIN_RDS_PASSWORD')
 def get_page_soup(page_url):
     client = uReq(page_url)
     page_html = client.read()
@@ -34,7 +35,7 @@ def parse_report_url(report):
     return str(report).split('href=')[1].split('"')[1]
 
 conn = psycopg2.connect(
-    "host=kaladin-db.cju35raiyeyw.us-west-2.rds.amazonaws.com dbname=kaladindb user=postgres password=tchoob89")
+    "host=kaladin-db.cju35raiyeyw.us-west-2.rds.amazonaws.com dbname=kaladindb user=postgres password=%s" % rds_password)
 
 for page_number in range(16000):
     report_list_url = 'https://www.wta.org/@@search_tripreport_listing?b_size=100&amp;b_start:int=%d&amp;_=1584045459199"' % int(

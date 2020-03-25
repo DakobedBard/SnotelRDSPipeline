@@ -112,14 +112,13 @@ def date_list(startdate, enddate):
     :param enddate:
     :return:
     '''
-    months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October',
-              'November', 'December']
     delta = enddate - startdate  # as timedelta
     days = []
     for i in range(delta.days + 1):
         day = startdate + timedelta(days=i)
         days.append((day.year, day.month, day.day))
     return days
+
 startdate = date(2008, 1, 1)  # start date
 enddate = date(2009+1, 1, 1)  # end date
 dates = date_list(startdate,enddate)
@@ -127,9 +126,6 @@ dates = date_list(startdate,enddate)
 for date in  dates:
     url = generate_url(date[0], date[1],date[2])
     insert_snowpack_data(extract_snowpack_data(url))
-
-
-
 
 #     urls = backfill_data_urls(startdate, enddate)
 #     snowpack_dictionaries = []
