@@ -20,7 +20,3 @@ trip_location =(""" CREATE TABLE IF NOT EXISTS geographic_location(
 #
 #
 trip_report_table_insert = ("""INSERT INTO trip_reports (trip_name, trip_report, elevationGain, mileage, locations, trip_date) VALUES (%s, %s, %s, %s, %s, %s);""")
-# trip_location = ("""INSERT INTO trip_reports (trip_name, trip_report, elevationGain, mileage, locations) VALUES (%s, %s, %s, %s);""")
-# trail_table_create = ("""INSERT INTO trip_reports (trip_name, trip_report, elevationGain, mileage, locations) VALUES (%s, %s, %s, %s);""")
-
-## I should find out how to add arrays to my postgreSQL table.

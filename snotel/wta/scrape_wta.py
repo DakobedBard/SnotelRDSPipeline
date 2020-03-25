@@ -28,6 +28,8 @@ def parse_trip_report(url):
     client.close()
     tripsoup = soup(trip_html,"html.parser")
     content = tripsoup.find("article", {"id": "content"})
+
+
     trip_text = content.find('p').text
     region = content.find_all('span')[1].text
     trip_title = content.find('h1').text

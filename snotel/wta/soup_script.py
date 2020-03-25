@@ -23,7 +23,11 @@ def parse_trip_report(trip_report_url):
     trip_title = content.find('h1').text
     date = content.find('span', {"class": "elapsed-time"})
     date_string = str(date).split('datetime=')[1].split('"')[1]
-    trip_report= {'title':trip_title, 'region':region, 'trip_report':trip_text, 'date':date_string }
+
+    docuemntHead = content.find("h1", {"class": "documentFirstHeading"})
+    location = docuemntHead.text
+    location_link = str(docuemntHead.find('a')).split('"')[1]
+    trip_report = {'title': trip_title, 'region': region, 'trip_report': trip_text, 'date': date_string, 'location':location, 'location_link':location_link}
     return trip_report
 
 def insert_trip_report(conn,trip_report):
