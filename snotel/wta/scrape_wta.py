@@ -81,7 +81,6 @@ def insert_trip_report(conn, report):
     :return:
     '''
 
-
     cur = conn.cursor()
     cur.execute(trip_report_table_insert,
                 (report.trip_name, 'trip_report', 2300, 45.3, ['location1', 'location2']))

@@ -1,0 +1,6 @@
+Start the webserver
+airflow webserver -p 8080
+airflow scheduler
+
+It is necesarry to add the module's path to the PythonPath or else it will not find the module once the Dag has been
+copied to the airflow directory
